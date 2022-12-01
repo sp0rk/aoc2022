@@ -19,5 +19,5 @@ jobs:
     secrets:
       REVIEWDOG_TOKEN: ${{secrets.REVIEWDOG_TOKEN}}
     with:
-      failOnError: false
+      failOnError: true
       reporter: "github-check"
