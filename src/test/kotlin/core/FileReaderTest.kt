@@ -1,6 +1,6 @@
 package core
 
-import com.github.spork.aoc2022.core.FileReader.readFile
+import core.FileReader.readFile
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

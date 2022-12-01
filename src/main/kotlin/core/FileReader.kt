@@ -1,4 +1,4 @@
-package com.github.spork.aoc2022.core
+package core
 
 import java.io.IOException
 

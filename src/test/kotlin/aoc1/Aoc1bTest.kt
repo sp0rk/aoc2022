@@ -1,7 +1,8 @@
-import com.github.spork.aoc2022.Aoc1a
+package aoc1
+
 import core.AocTest
 
-class Aoc1aTest : AocTest(
+class Aoc1bTest : AocTest(
     testInput =
     """
         1000
@@ -19,6 +20,6 @@ class Aoc1aTest : AocTest(
         
         10000
     """.trimIndent(),
-    expectedOutput = "24000",
-    sut = Aoc1a
+    expectedOutput = "45000",
+    sut = Aoc1b
 )

@@ -1,7 +1,9 @@
-package com.github.spork.aoc2022.core
+package core
 
-import com.github.spork.aoc2022.Aoc1a
+import aoc1.Aoc1a
+import aoc1.Aoc1b
 
 fun main() {
     Aoc1a()
+    Aoc1b()
 }

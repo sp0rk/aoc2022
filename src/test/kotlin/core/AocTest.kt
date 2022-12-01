@@ -1,6 +1,5 @@
 package core
 
-import com.github.spork.aoc2022.core.Aoc
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 

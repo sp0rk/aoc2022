@@ -1,6 +1,6 @@
-package com.github.spork.aoc2022.core
+package core
 
-import com.github.spork.aoc2022.core.FileReader.readFile
+import core.FileReader.readFile
 
 interface Aoc {
     val inputPath: String
