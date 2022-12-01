@@ -1,7 +1,7 @@
 package core
 
-import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
+import com.google.common.truth.Truth.assertThat
+import kotlin.test.Test
 
 abstract class AocTest(
     private val testInput: String,
@@ -11,6 +11,6 @@ abstract class AocTest(
 
     @Test
     fun test() {
-        assertEquals(expectedOutput, sut.calculateAnswer(testInput))
+        assertThat(sut.calculateAnswer(testInput)).isEqualTo(expectedOutput)
     }
 }

@@ -1,10 +1,10 @@
 package core
 
+import com.google.common.truth.Truth.assertThat
 import core.FileReader.readFile
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
+import org.junit.Assert.assertThrows
 import java.io.IOException
+import kotlin.test.Test
 
 class FileReaderTest {
     @Test
@@ -21,7 +21,7 @@ class FileReaderTest {
 
         val actual = readFile(path)
 
-        assertEquals(expected, actual)
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test
@@ -38,14 +38,14 @@ class FileReaderTest {
 
         val actual = readFile(path)
 
-        assertEquals(expected, actual)
+        assertThat(actual).isEqualTo(expected)
     }
 
     @Test
     fun `GIVEN file does not exist WHEN read file THEN throw`() {
         val path = "/NonExistentFile.txt"
 
-        assertThrows<IOException> {
+        assertThrows(IOException::class.java) {
             readFile(path)
         }
     }

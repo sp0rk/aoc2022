@@ -10,6 +10,10 @@ More about advent on code and how to participate here: https://adventofcode.com/
 
 ## About this repo
 
+![Coverage](.github/badges/jacoco.svg)
+
+![BuildAndTest](https://github.com/sp0rk/aoc2022/actions/workflows/buildAndTest.yml/badge.svg)
+
 * Main.main() calculates prints all the solutions for my input.
 * Tests run on the example data specified in each day's description.
 

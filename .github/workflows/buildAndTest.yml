@@ -1,0 +1,23 @@
+name: BuildAndTest
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  buildAndTest:
+    uses: sp0rk/chaffinch-gha/.github/workflows/buildAndTest.yml@main
+    secrets:
+      jitPackToken: ""
+    with:
+      coverageBadge: true
+      coverageReport: false
+
+  ktlint:
+    uses: sp0rk/chaffinch-gha/.github/workflows/lint.yml@main
+    secrets:
+      REVIEWDOG_TOKEN: ${{secrets.REVIEWDOG_TOKEN}}
+    with:
+      failOnError: false
+      reporter: "github-check"
