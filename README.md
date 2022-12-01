@@ -1,5 +1,9 @@
 # Kotlin solutions for Advent of Code 2022
 
+Disclaimer: If you are competing for spots on the leaderboard, do not read these solutions as:
+- they are probably far from good
+- I don't think aoc team appreciates that
+
 ## About Advent of Code
 
 More about advent on code and how to participate here: https://adventofcode.com/2022/about
