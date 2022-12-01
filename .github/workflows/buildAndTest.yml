@@ -17,7 +17,7 @@ jobs:
   ktlint:
     uses: sp0rk/chaffinch-gha/.github/workflows/lint.yml@main
     secrets:
-      REVIEWDOG_TOKEN: ${{secrets.REVIEWDOG_TOKEN}}
+      REVIEWDOG_TOKEN: ${{secrets.GITHUB_TOKEN}}
     with:
       failOnError: true
       reporter: "github-check"
