@@ -25,6 +25,23 @@ class FileReaderTest {
     }
 
     @Test
+    fun `GIVEN file exists AND has leading or trailing whitespace WHEN read file THEN return file contents trimmed`() {
+        val path = "/TestFileUnsanitised.txt"
+        val expected =
+            """
+            4852
+            4512
+            
+            4277
+            3324
+            """.trimIndent()
+
+        val actual = readFile(path)
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
     fun `GIVEN file does not exist WHEN read file THEN throw`() {
         val path = "/NonExistentFile.txt"
 

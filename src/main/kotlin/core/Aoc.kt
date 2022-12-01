@@ -10,6 +10,6 @@ interface Aoc {
         val input = readFile(inputPath)
         val answer = calculateAnswer(input)
         val aocName = this::class.java.simpleName
-        print("$aocName: $answer")
+        println("$aocName: $answer")
     }
 }
