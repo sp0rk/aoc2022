@@ -1,0 +1,4 @@
+[*.{kt,kts}]
+
+ktlint_disabled_rules = trailing-comma-on-declaration-site
+insert_final_newline = true

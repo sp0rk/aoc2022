@@ -1,8 +1,6 @@
 package aoc2
 
 import aoc2.Commons.parseRounds
-import aoc2.model.Round
-import aoc2.model.Throw
 import core.Aoc
 
 /***
