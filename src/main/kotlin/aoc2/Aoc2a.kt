@@ -1,7 +1,6 @@
 package aoc2
 
-import aoc2.model.Round
-import aoc2.model.Throw
+import aoc2.Commons.parseRounds
 import core.Aoc
 
 /***
@@ -22,16 +21,10 @@ object Aoc2a : Aoc {
 
     override fun calculateAnswer(input: String): String {
         val rounds = parseRounds(input)
-        val totalScore = rounds.sumOf(Round::points)
+        val totalScore = rounds.sumOf { round ->
+            round.calculatePoints(forUpdatedStrategy = false)
+        }
 
         return "$totalScore"
-    }
-
-    private fun parseRounds(input: String) = input.split("\n").map { round ->
-        val (opponentThrow, playerThrow) = round.split(" ")
-        Round(
-            opponentThrow = Throw.forOpponentSymbol(opponentThrow),
-            playerThrow = Throw.forPlayerSymbol(playerThrow),
-        )
     }
 }

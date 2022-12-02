@@ -16,6 +16,12 @@ enum class Throw(
 
         fun forPlayerSymbol(symbol: String) = values().firstOrNull { it.playerSymbol == symbol }
             ?: throw IllegalArgumentException("No throw for player symbol $symbol")
+
+        fun forResult(result: RoundResult, opponentThrow: Throw) = when (result) {
+            RoundResult.DRAW -> opponentThrow
+            RoundResult.WIN -> values().first { it beats opponentThrow }
+            RoundResult.LOSS -> values().first { opponentThrow beats it }
+        }
     }
 }
 
