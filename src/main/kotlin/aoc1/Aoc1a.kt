@@ -18,7 +18,6 @@ import core.Input
  *
  * Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
  */
-
 object Aoc1a : Aoc {
     override val inputPath = "/inputs/Aoc1.txt"
 
