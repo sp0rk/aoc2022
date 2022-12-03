@@ -1,6 +1,5 @@
 package aoc3
 
-
 private const val LOWERCASE_A_CODE = 97
 private const val UPPERCASE_OFFSET = 26
 
