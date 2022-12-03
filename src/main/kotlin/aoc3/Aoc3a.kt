@@ -1,5 +1,6 @@
 package aoc3
 
+import aoc3.Commons.calculateItemPriority
 import core.Aoc
 import core.Input
 
@@ -10,7 +11,7 @@ import core.Input
  * Each rucksack has two large compartments. All items of a given type are meant to go into exactly one of the two
  * compartments. The Elf that did the packing failed to follow this rule for exactly one item type per rucksack.
  *
- * The Elves have made a list of all of the items currently in each rucksack (your puzzle input), but they need
+ * The Elves have made a list of all the items currently in each rucksack (your puzzle input), but they need
  * your help finding the errors. Every item type is identified by a single lowercase or uppercase letter.
  *
  * The list of items for each rucksack is given as characters all on a single line. A given rucksack always has the same
@@ -42,19 +43,4 @@ object Aoc3a : Aoc {
 
         return commonItems.first()
     }
-
-    private fun calculateItemPriority(item: Char): Int {
-        val offsetFromA = item.lowercaseChar().code - LOWERCASE_A_CODE // B=1
-        val lowercasePriority = offsetFromA + 1 // B=2
-        val caseOffset = if (item.isUpperCase()) { // B=26
-            UPPERCASE_OFFSET
-        } else {
-            0
-        }
-
-        return lowercasePriority + caseOffset // B=28
-    }
 }
-
-private const val LOWERCASE_A_CODE = 97
-private const val UPPERCASE_OFFSET = 26

@@ -5,6 +5,7 @@ import aoc1.Aoc1b
 import aoc2.Aoc2a
 import aoc2.Aoc2b
 import aoc3.Aoc3a
+import aoc3.Aoc3b
 
 fun main() {
     Aoc1a()
@@ -12,4 +13,5 @@ fun main() {
     Aoc2a()
     Aoc2b()
     Aoc3a()
+    Aoc3b()
 }
