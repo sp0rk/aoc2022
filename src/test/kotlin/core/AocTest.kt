@@ -11,6 +11,6 @@ abstract class AocTest(
 
     @Test
     fun test() {
-        assertThat(sut.calculateAnswer(testInput)).isEqualTo(expectedOutput)
+        assertThat(sut.calculateAnswer(Input(testInput))).isEqualTo(expectedOutput)
     }
 }

@@ -2,6 +2,7 @@ package aoc2
 
 import aoc2.Commons.parseRounds
 import core.Aoc
+import core.Input
 
 /***
  * Day 2: Rock Paper Scissors Part Two
@@ -20,7 +21,7 @@ import core.Aoc
 object Aoc2b : Aoc {
     override val inputPath = "/inputs/Aoc2.txt"
 
-    override fun calculateAnswer(input: String): String {
+    override fun calculateAnswer(input: Input): String {
         val rounds = parseRounds(input)
         val totalScore = rounds.sumOf { round ->
             round.calculatePoints(forUpdatedStrategy = true)

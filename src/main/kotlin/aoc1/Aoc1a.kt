@@ -2,6 +2,7 @@ package aoc1
 
 import aoc1.Commons.calculateCalorieSums
 import core.Aoc
+import core.Input
 
 /***
  * Day 1: Calorie Counting
@@ -21,7 +22,7 @@ import core.Aoc
 object Aoc1a : Aoc {
     override val inputPath = "/inputs/Aoc1.txt"
 
-    override fun calculateAnswer(input: String): String {
+    override fun calculateAnswer(input: Input): String {
         val calorieSums = calculateCalorieSums(input)
         val maxCaloriesOfAllElves = calorieSums.max()
 

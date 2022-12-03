@@ -3,9 +3,10 @@ package aoc2
 import aoc2.model.Round
 import aoc2.model.RoundResult
 import aoc2.model.Throw
+import core.Input
 
 object Commons {
-    fun parseRounds(input: String) = input.split("\n").map { round ->
+    fun parseRounds(input: Input) = input.split("\n").map { round ->
         val (opponentThrow, playerInstruction) = round.split(" ")
         Round(
             opponentThrow = Throw.forOpponentSymbol(opponentThrow),
