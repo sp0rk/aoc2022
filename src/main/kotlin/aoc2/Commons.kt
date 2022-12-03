@@ -6,8 +6,8 @@ import aoc2.model.Throw
 import core.Input
 
 object Commons {
-    fun parseRounds(input: Input) = input.split("\n").map { round ->
-        val (opponentThrow, playerInstruction) = round.split(" ")
+    fun parseRounds(input: Input) = input.lines.map { round ->
+        val (opponentThrow, playerInstruction) = round.wordStrings
         Round(
             opponentThrow = Throw.forOpponentSymbol(opponentThrow),
             playerThrow = Throw.forPlayerSymbol(playerInstruction),

@@ -4,9 +4,9 @@ import core.Input
 
 object Commons {
     fun calculateCalorieSums(input: Input): List<Int> {
-        val elves = input.split("\n\n")
+        val elves = input.paragraphs
         val foodsItemsPerElf = elves.map { elf ->
-            elf.split("\n")
+            elf.lineStrings
         }
         val calorieSums = foodsItemsPerElf.map { foodItems ->
             val caloriesPerFoodItem = foodItems.map(String::toInt)
