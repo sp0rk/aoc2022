@@ -1,11 +1,12 @@
 package aoc4
 
+import aoc4.Commons.parseRange
 import core.Aoc
 import core.Input
 
 /***
  * Day 4: Camp Cleanup
- * https://adventofcode.com/2022/day/3
+ * https://adventofcode.com/2022/day/4
  *
  * Every section has a unique ID number, and each Elf is assigned a range of section IDs.
  *
@@ -27,10 +28,6 @@ object Aoc4a : Aoc {
         }
 
         return "$pairsWithFullOverlaps"
-    }
-
-    private fun parseRange(rangeString: String) = rangeString.split("-").let { (rangeStart, rangeEnd) ->
-        IntRange(rangeStart.toInt(), rangeEnd.toInt())
     }
 
     private fun oneContainsTheOther(ranges: Pair<IntRange, IntRange>) =
