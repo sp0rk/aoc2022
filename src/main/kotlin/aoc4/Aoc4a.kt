@@ -17,7 +17,7 @@ import core.Input
  * In how many assignment pairs does one range fully contain the other?
  */
 object Aoc4a : Aoc {
-    override val inputPath = "/inputs/Aoc4a.txt"
+    override val inputPath = "/inputs/Aoc4.txt"
 
     override fun calculateAnswer(input: Input): String {
         val pairsWithFullOverlaps = input.lineStrings.map { pair ->
