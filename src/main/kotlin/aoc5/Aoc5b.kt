@@ -22,10 +22,13 @@ object Aoc5b : Aoc {
         val (stacks, moves) = parseInput(input)
 
         moves.forEach { move ->
-            repeat(move.size) {
-                val itemBeingMoved = stacks[move.from].pop()
-                stacks[move.to].push(itemBeingMoved)
-            }
+            val itemsBeingMoved = buildList<String> {
+                repeat(move.size) {
+                    add(stacks[move.from].pop())
+                }
+            }.reversed()
+
+            stacks[move.to].addAll(itemsBeingMoved)
         }
 
         return stacks.joinToString(
