@@ -32,19 +32,31 @@ object Aoc5a : Aoc {
     override fun shouldTrimInput() = false
 
     override fun calculateAnswer(input: Input): String {
-        parseInput(input)
+        val (stacks, moves) = parseInput(input)
 
-        return "not implemented"
+        moves.forEach { move ->
+            repeat(move.size) {
+                val itemBeingMoved = stacks[move.from].pop()
+                stacks[move.to].push(itemBeingMoved)
+            }
+        }
+
+        return stacks.joinToString(
+            separator = "",
+            transform = Stack<String>::peek
+        )
     }
 
-    private fun parseInput(input: Input) {
+    private fun parseInput(input: Input): Pair<List<Stack<String>>, List<Move>> {
         val (startingDiagramInput, moveSequenceInput) = input.paragraphs
         val moves = parseMoveSequence(moveSequenceInput)
-        val startingStacks = parseStartingDiagram(startingDiagramInput)
+        val stacks = parseStartingDiagram(startingDiagramInput)
+
+        return stacks to moves
     }
 
     private fun parseMoveSequence(moveSequenceInput: Input) =
-        moveSequenceInput.lineStrings.map { moveString ->
+        moveSequenceInput.lineStrings.filter(String::isNotEmpty).map { moveString ->
             val matches = MOVE_SEQUENCE_PATTERN.matchEntire(moveString)
                 ?: throw IllegalArgumentException("$moveString does not match a move sequence pattern")
 
