@@ -5,27 +5,16 @@ import core.Input
 import java.util.*
 
 /***
- * Day 5: Supply Stacks
+ * Day 5: Supply Stacks Part Two
  * https://adventofcode.com/2022/day/5
  *
- * To ensure none of the crates get crushed or fall over, the crane operator will rearrange them in a series of
- * carefully-planned steps.
+ * The CrateMover 9001 is notable for the ability to pick up and move multiple crates at once.
  *
- * They do, however, have a drawing of the starting stacks of crates and the rearrangement procedure (your puzzle input)
- *
- *     [D]
- * [N] [C]
- * [Z] [M] [P]
- *  1   2   3
- *
- * move 1 from 2 to 1
- * move 3 from 1 to 3
- * move 2 from 2 to 1
- * move 1 from 1 to 2
+ * Action of moving three crates from stack 1 to stack 3 means that those three moved crates stay in the same order
  *
  * After the rearrangement procedure completes, what crate ends up on top of each stack?
  */
-object Aoc5a : Aoc {
+object Aoc5b : Aoc {
     override val inputPath = "/inputs/Aoc5.txt"
     override fun shouldTrimInput() = false
 
