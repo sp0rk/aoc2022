@@ -27,7 +27,7 @@ More about advent on code and how to participate here: https://adventofcode.com/
 | 3   | &#x2713; | &#x2713; |
 | 4   | &#x2713; | &#x2713; |
 | 5   | &#x2713; | &#x2713; |
-| 6   |          |          |
+| 6   | &#x2713; | &#x2713; |
 | 7   |          |          |
 | 8   |          |          |
 | 9   |          |          |

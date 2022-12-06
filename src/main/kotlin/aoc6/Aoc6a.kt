@@ -5,6 +5,8 @@ import core.Input
 
 /**
  * Day 6: Tuning Trouble
+ * https://adventofcode.com/2022/day/6#part2
+ *
  * To fix the communication system, you need to add a subroutine to the device that detects a start-of-packet marker
  * in the data-stream. In the protocol being used by the Elves, the start of a packet is indicated by a sequence of
  * four characters that are all different.
@@ -20,28 +22,5 @@ object Aoc6a : Aoc {
     private const val START_SEQUENCE_SIZE = 4
     override val inputPath = "/inputs/Aoc6.txt"
 
-    override fun calculateAnswer(input: Input): String {
-        val deque = ArrayDeque<Char>(START_SEQUENCE_SIZE)
-        input.raw.forEachIndexed { index, marker ->
-            // push new marker
-            deque.addLast(marker)
-
-            if (deque.isStartSequence) {
-                return (index + 1).toString()
-            }
-
-            // constraint deque to proper size
-            if (deque.size >= START_SEQUENCE_SIZE) {
-                deque.removeFirst()
-            }
-        }
-
-        throw IllegalArgumentException("Start sequence not present")
-    }
-
-    /**
-     * Correct size and each element different from others
-     */
-    private val ArrayDeque<*>.isStartSequence
-        get() = size == START_SEQUENCE_SIZE && distinct() == this
+    override fun calculateAnswer(input: Input) = findSequenceStart(input.raw, START_SEQUENCE_SIZE).toString()
 }
