@@ -3,6 +3,9 @@ package core
 @JvmInline
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 value class Input(private val value: String) : CharSequence by value {
+    val raw
+        get() = value
+
     val paragraphStrings
         get() = value.split("\n\n")
 
