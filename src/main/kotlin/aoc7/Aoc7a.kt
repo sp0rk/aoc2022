@@ -1,6 +1,8 @@
 package aoc7
 
 import aoc7.FileTreeCommandMapper.constructFileTreeFromCommands
+import aoc7.model.Directory
+import aoc7.model.FileTree
 import core.Aoc
 import core.Input
 
@@ -33,9 +35,13 @@ object Aoc7a : Aoc {
 
     override fun calculateAnswer(input: Input): String {
         val fileTree = constructFileTreeFromCommands(input.lineStrings)
-        println(fileTree)
-        return "not implemented"
+        val totalSizes = findAllSmallDirectories(fileTree).sumOf(Directory::totalSize)
+
+        return "$totalSizes"
     }
 
-
+    private fun findAllSmallDirectories(fileTree: FileTree) = fileTree
+        .allFilesRecursive
+        .filterIsInstance<Directory>()
+        .filter { it.totalSize <= 100_000 }
 }
