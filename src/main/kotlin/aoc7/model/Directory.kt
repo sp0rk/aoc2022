@@ -9,8 +9,8 @@ open class Directory(override val name: String) : FileTree(name) {
     override val totalSize: Int
         get() = children.sumOf(FileTree::totalSize)
 
-    override val allFilesRecursive: List<FileTree>
-        get() = children.flatMap(FileTree::allFilesRecursive) + this
+    override val allFilesRecursive: Set<FileTree>
+        get() = (children.flatMap(FileTree::allFilesRecursive) + this).toSet()
 
     operator fun get(name: String) = children
         .filterIsInstance<Directory>()

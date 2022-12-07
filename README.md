@@ -1,6 +1,7 @@
 # Kotlin solutions for Advent of Code 2022
 
 Disclaimer: If you are competing for spots on the leaderboard, do not read these solutions as:
+
 - they are probably far from good
 - I don't think aoc team appreciates that
 
@@ -18,6 +19,7 @@ More about advent on code and how to participate here: https://adventofcode.com/
 * Tests run on the example data specified in each day's description.
 
 ## Days
+
 <!--- &#x2713 for checkmark, &#x2713; for cross --->
 
 | Day | Silver   | Gold     |
@@ -28,7 +30,7 @@ More about advent on code and how to participate here: https://adventofcode.com/
 | 4   | &#x2713; | &#x2713; |
 | 5   | &#x2713; | &#x2713; |
 | 6   | &#x2713; | &#x2713; |
-| 7   |          |          |
+| 7   | &#x2713; | &#x2713; |
 | 8   |          |          |
 | 9   |          |          |
 | 10  |          |          |
