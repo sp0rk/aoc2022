@@ -36,36 +36,36 @@ object Aoc7a : Aoc {
 
     override fun calculateAnswer(input: Input): String {
         val fileTree = constructFileTreeFromCommands(input.lineStrings)
+        println (fileTree)
         return "not implemented"
     }
 
     private fun constructFileTreeFromCommands(commands: List<String>): FileTree {
         var workingDirectory: Directory = Root
+        val LS_PATTERN = "ls"
+        val CD_PATTERN = "\\$ cd (.+)"
+        val FILE_PATTERN = "(\\d+) (.+)"
+        val DIRECTORY_PATTERN = "dir (.+)"
 
         fun handleCd(command: String) {
-            val name = ""
-            if (name == "..") {
-                workingDirectory = workingDirectory.parent
+            val (name) = Regex(CD_PATTERN).matchEntire(command)!!.destructured
+            workingDirectory = if (name == "..") {
+                workingDirectory.parent
             } else {
-                workingDirectory = workingDirectory[name]
+                workingDirectory[name]
             }
         }
 
         fun handleFile(command: String) {
-            val name = ""
-            val size = 0
-            workingDirectory.addChild(File(name, size))
+            val (size, name) = Regex(FILE_PATTERN).matchEntire(command)!!.destructured
+            workingDirectory.addChild(File(name, size.toInt()))
         }
 
         fun handleDirectory(command: String) {
-            val name = ""
+            val (name) = Regex(DIRECTORY_PATTERN).matchEntire(command)!!.destructured
             workingDirectory.addChild(Directory(name))
         }
 
-        val LS_PATTERN = ""
-        val CD_PATTERN = ""
-        val FILE_PATTERN = ""
-        val DIRECTORY_PATTERN = ""
 
         commands
             // First line is always `$ cd /` which we've already initialized
