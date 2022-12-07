@@ -1,7 +1,11 @@
 package aoc7
 
+import aoc7.Aoc7a.FileTree.Directory
+import aoc7.Aoc7a.FileTree.Directory.Root
+import aoc7.Aoc7a.FileTree.File
 import core.Aoc
 import core.Input
+import java.util.*
 
 /**
  * Day 7: No Space Left On Device
@@ -31,6 +35,102 @@ object Aoc7a : Aoc {
     override val inputPath = "/inputs/Aoc7.txt"
 
     override fun calculateAnswer(input: Input): String {
+        val fileTree = constructFileTreeFromCommands(input.lineStrings)
         return "not implemented"
     }
+
+    private fun constructFileTreeFromCommands(commands: List<String>): FileTree {
+        var workingDirectory: Directory = Root
+
+        fun handleCd(command: String) {
+            val name = ""
+            if (name == "..") {
+                workingDirectory = workingDirectory.parent
+            } else {
+                workingDirectory = workingDirectory[name]
+            }
+        }
+
+        fun handleFile(command: String) {
+            val name = ""
+            val size = 0
+            workingDirectory.addChild(File(name, size))
+        }
+
+        fun handleDirectory(command: String) {
+            val name = ""
+            workingDirectory.addChild(Directory(name))
+        }
+
+        val LS_PATTERN = ""
+        val CD_PATTERN = ""
+        val FILE_PATTERN = ""
+        val DIRECTORY_PATTERN = ""
+
+        commands
+            // First line is always `$ cd /` which we've already initialized
+            .drop(1)
+            .forEach { command ->
+                when {
+                    command.matches(Regex(CD_PATTERN)) -> handleCd(command)
+                    command.matches(Regex(FILE_PATTERN)) -> handleFile(command)
+                    command.matches(Regex(DIRECTORY_PATTERN)) -> handleDirectory(command)
+                    command.matches(Regex(LS_PATTERN)) -> {
+                        /** noop **/
+                    }
+
+                    else -> {
+                        throw IllegalArgumentException("Cannot parse command $command")
+                    }
+                }
+            }
+
+        while (workingDirectory !is Root) {
+            workingDirectory = workingDirectory.parent
+        }
+
+        return workingDirectory
+    }
+
+    sealed class FileTree(open val name: String) {
+        protected var _parent: Directory? = null
+        abstract val parent: Directory
+        abstract val totalSize: Int
+
+        open class Directory(override val name: String) : FileTree(name) {
+            private val children = TreeSet<FileTree>()
+
+            override val parent
+                get() = _parent!!
+
+            override val totalSize: Int
+                get() = children.sumOf(FileTree::totalSize)
+
+            operator fun get(name: String) = children
+                .filterIsInstance<Directory>()
+                .first { it.name == name }
+
+            fun addChild(child: FileTree) {
+                child._parent = this
+                children.add(child)
+            }
+
+
+            object Root : Directory("") {
+                override val parent: Directory
+                    get() = throw IllegalStateException("Root does not have a parent")
+                override val totalSize: Int
+                    get() = throw IllegalStateException("Root does not have a size")
+            }
+        }
+
+        data class File(override val name: String, val size: Int) : FileTree(name) {
+            override val parent
+                get() = _parent!!
+
+            override val totalSize = size
+        }
+    }
+
+
 }
