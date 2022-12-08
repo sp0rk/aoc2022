@@ -15,6 +15,7 @@ import aoc6.Aoc6b
 import aoc7.Aoc7a
 import aoc7.Aoc7b
 import aoc8.Aoc8a
+import aoc8.Aoc8b
 
 fun main() {
     Aoc1a()
@@ -32,4 +33,5 @@ fun main() {
     Aoc7a()
     Aoc7b()
     Aoc8a()
+    Aoc8b()
 }
