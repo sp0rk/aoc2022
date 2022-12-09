@@ -6,7 +6,7 @@ import aoc9.model.Move
 import core.Aoc
 import core.Input
 
-object Aoc9a : Aoc {
+object Aoc9b : Aoc {
     override val inputPath = "/inputs/Aoc9.txt"
 
     override fun calculateAnswer(input: Input): String {

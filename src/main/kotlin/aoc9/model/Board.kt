@@ -3,17 +3,34 @@ package aoc9.model
 private val origin: Position
     get() = 0 to 0
 
-class Board {
-    val tailPositions = mutableSetOf(origin)
+class Board(private val ropeNodes: Int = 2) {
+    val uniqueTailPositions get() = tailPositions.size
 
-    private var head = origin
-    private var tail = origin
+    private val tailPositions = mutableSetOf(origin)
+    private val nodePositions = buildList {
+        repeat(ropeNodes) {
+            add(origin)
+        }
+    }.toMutableList()
+
+    private var head
+        get() =
+            nodePositions[0]
+        set(value) {
+            nodePositions[0] = value
+        }
+
+    private var tail
+        get() =
+            nodePositions[nodePositions.lastIndex]
+        set(value) {
+            nodePositions[nodePositions.lastIndex] = value
+        }
 
     fun move(move: Move) {
         repeat(move.size) {
             moveHead(move.direction)
             moveTailIfNeeded()
-            tailPositions.add(tail)
         }
     }
 
@@ -55,5 +72,7 @@ class Board {
         } else {
             throw IllegalStateException("head: $head, tail: $tail. Is not a valid position")
         }
+
+        tailPositions.add(tail)
     }
 }

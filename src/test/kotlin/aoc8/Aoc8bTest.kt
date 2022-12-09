@@ -2,7 +2,7 @@ package aoc8
 
 import core.AocTest
 
-class Aoc88bTest : AocTest(
+class Aoc8bTest : AocTest(
     testInput =
     """
         30373
