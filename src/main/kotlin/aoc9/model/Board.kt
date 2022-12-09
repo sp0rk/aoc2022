@@ -1,5 +1,7 @@
 package aoc9.model
 
+import kotlin.math.sign
+
 private val origin: Position
     get() = 0 to 0
 
@@ -53,20 +55,36 @@ class Board(private val ropeNodes: Int = 2) {
         }
 
         // If position is not valid, move tail
-        nodePositions[index] = if (headToTailVector.x == 2) {
-            tail.x + 1 to head.y
-        } else if (headToTailVector.x == -2) {
-            tail.x + -1 to head.y
-        } else if (headToTailVector.y == 2) {
-            head.x to tail.y + 1
-        } else if (headToTailVector.y == -2) {
-            head.x to tail.y - 1
-        } else {
-            throw IllegalStateException("head: $head, tail: $tail. Is not a valid position")
-        }
+        nodePositions[index] += headToTailVector.x.sign to headToTailVector.y.sign
 
         if (index != nodePositions.lastIndex) {
             moveNextNodeIfNeeded(index + 1)
+        }
+    }
+
+    // Align drawing size and offset to input data
+    override fun toString(): String {
+        val drawingSize = 50
+        val offset = 24
+        val board = buildList {
+            repeat(drawingSize) {
+                add(buildList {
+                    repeat(drawingSize) {
+                        add(".")
+                    }
+                }.toMutableList())
+            }
+        }
+
+        board[offset][offset] = "s"
+        nodePositions.reversed().forEachIndexed { i, n ->
+            board[n.y + offset][n.x + offset] = if (ropeNodes - i - 1 == 0) "H" else "${ropeNodes - i - 1}"
+        }
+
+        return buildString {
+            for (row in board) {
+                appendLine(row.joinToString(" "))
+            }
         }
     }
 }

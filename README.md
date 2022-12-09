@@ -32,7 +32,7 @@ More about advent on code and how to participate here: https://adventofcode.com/
 | 6   | &#x2713; | &#x2713; |
 | 7   | &#x2713; | &#x2713; |
 | 8   | &#x2713; | &#x2713; |
-| 9   |          |          |
+| 9   | &#x2713; | &#x2713; |
 | 10  |          |          |
 | 11  |          |          |
 | 12  |          |          |

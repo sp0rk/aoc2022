@@ -8,9 +8,10 @@ import core.Input
 
 object Aoc9b : Aoc {
     override val inputPath = "/inputs/Aoc9.txt"
+    private const val ROPE_LENGTH = 10
 
     override fun calculateAnswer(input: Input): String {
-        val board = Board()
+        val board = Board(ROPE_LENGTH)
         val moves = parseMoves(input.lineStrings)
 
         moves.forEach(board::move)

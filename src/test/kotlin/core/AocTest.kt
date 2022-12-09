@@ -15,7 +15,8 @@ abstract class AocTest(
 
     @Test
     fun test() {
-        definitions.forEach { (input, output) ->
+        definitions.forEachIndexed { index, (input, output) ->
+            println("Test case #(${index+1}/${definitions.size})")
             assertThat(sut.calculateAnswer(Input(input))).isEqualTo(output)
         }
     }
