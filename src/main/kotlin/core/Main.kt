@@ -3,6 +3,7 @@ package core
 import aoc1.Aoc1a
 import aoc1.Aoc1b
 import aoc10.Aoc10a
+import aoc10.Aoc10b
 import aoc2.Aoc2a
 import aoc2.Aoc2b
 import aoc3.Aoc3a
@@ -40,4 +41,5 @@ fun main() {
     Aoc9a()
     Aoc9b()
     Aoc10a()
+    Aoc10b(onNewLine = true)
 }
