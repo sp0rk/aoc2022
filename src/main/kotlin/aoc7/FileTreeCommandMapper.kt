@@ -5,7 +5,6 @@ import aoc7.model.File
 import aoc7.model.FileTree
 import aoc7.model.Root
 
-
 private const val LS_PATTERN = "\\$ ls"
 private const val CD_PATTERN = "\\$ cd (.+)"
 private const val FILE_PATTERN = "(\\d+) (.+)"
