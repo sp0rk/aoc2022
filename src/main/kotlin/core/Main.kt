@@ -5,6 +5,7 @@ import aoc1.Aoc1b
 import aoc10.Aoc10a
 import aoc10.Aoc10b
 import aoc11.Aoc11a
+import aoc11.Aoc11b
 import aoc2.Aoc2a
 import aoc2.Aoc2b
 import aoc3.Aoc3a
@@ -44,4 +45,5 @@ fun main() {
     Aoc10a()
     Aoc10b(onNewLine = true)
     Aoc11a()
+    Aoc11b()
 }
