@@ -1,10 +1,9 @@
 package commons
 
 class Grid<T>(initial: List<List<T>>) : List<List<T>> by initial {
-    val positions
-        get() = buildSet {
-            forEachIndexed { x, _ ->
-                forEachIndexed { y, _ ->
+    val positions = buildSet {
+            this@Grid.forEachIndexed { y, _ ->
+                this@Grid[y].forEachIndexed { x, _ ->
                     add(Position(x, y))
                 }
             }

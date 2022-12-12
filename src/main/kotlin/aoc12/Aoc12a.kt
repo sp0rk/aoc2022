@@ -18,9 +18,10 @@ object Aoc12a : Aoc {
 
         var currentPosition: Position = start
         heightMap[start].tentativeDistance = 0
+        heightMap[start].tentativePath = listOf(start)
 
         while (currentPosition != end) {
-            println("Considering $currentPosition: ${heightMap[currentPosition]}")
+//            println("Considering $currentPosition: ${heightMap[currentPosition]}. Unvisited left: $unvisitedPositions")
             val connectedNeighbours = heightMap.connectedNeighbours(currentPosition, ::isNavigable)
             connectedNeighbours
                 .filter { it in unvisitedPositions }
@@ -28,6 +29,7 @@ object Aoc12a : Aoc {
                     val proposedDistance = heightMap[currentPosition].tentativeDistance + 1
                     if (heightMap[neighbour].tentativeDistance > proposedDistance) {
                         heightMap[neighbour].tentativeDistance = proposedDistance
+                        heightMap[neighbour].tentativePath = heightMap[currentPosition].tentativePath + neighbour
                     }
                 }
             unvisitedPositions.remove(currentPosition)
@@ -35,6 +37,8 @@ object Aoc12a : Aoc {
         }
 
         val shortestDistance = heightMap[currentPosition].tentativeDistance
+
+//        println(heightMap[currentPosition].tentativePath.map { "$it: ${heightMap[it].height}" })
 
         return "$shortestDistance"
     }
@@ -45,7 +49,7 @@ object Aoc12a : Aoc {
             'E' -> 'z'
             else -> this
         }
-        return target.height.sanitised() - origin.height.sanitised() >= 0
+        return target.height.sanitised() - origin.height.sanitised() <= 1
     }
 
     private fun parseHeightMap(rows: List<String>) = Grid(
