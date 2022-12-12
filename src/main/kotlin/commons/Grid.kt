@@ -1,11 +1,25 @@
 package commons
 
 class Grid<T>(initial: List<List<T>>) : List<List<T>> by initial {
+    val positions
+        get() = buildSet {
+            forEachIndexed { x, _ ->
+                forEachIndexed { y, _ ->
+                    add(Position(x, y))
+                }
+            }
+        }
+
     operator fun get(position: Position) = this[position.y][position.x]
 
     fun findElement(element: T) =
         indexOfFirst { it.contains(element) }.let { y ->
             this[y].indexOf(element) to y
+        }
+
+    fun findElement(predicate: (T) -> Boolean) =
+        indexOfFirst { it.any(predicate) }.let { y ->
+            this[y].indexOfFirst(predicate) to y
         }
 
     fun connectedNeighbours(element: Position, predicate: (origin: T, neighbour: T) -> Boolean) = setOfNotNull(
