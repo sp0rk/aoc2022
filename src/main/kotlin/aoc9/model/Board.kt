@@ -1,5 +1,9 @@
 package aoc9.model
 
+import commons.Position
+import commons.plus
+import commons.x
+import commons.y
 import kotlin.math.sign
 
 private val origin: Position

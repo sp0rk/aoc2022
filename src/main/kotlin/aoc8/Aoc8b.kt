@@ -1,7 +1,8 @@
 package aoc8
 
-import aoc8.model.BoardOfInts
 import aoc8.model.Direction
+import commons.Grid
+import commons.Position
 import core.Aoc
 import core.Input
 
@@ -33,7 +34,7 @@ object Aoc8b : Aoc {
 
     }
 
-    private fun scenicScore(board: BoardOfInts, treeIndices: Pair<Int, Int>, direction: Direction): Int {
+    private fun scenicScore(board: Grid<Int>, treeIndices: Position, direction: Direction): Int {
         val (x, y) = treeIndices
         val tree = board[x][y]
 

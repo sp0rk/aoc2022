@@ -1,7 +1,8 @@
 package aoc8
 
-import aoc8.model.BoardOfInts
 import aoc8.model.Direction
+import commons.Grid
+import commons.Position
 import core.Aoc
 import core.Input
 
@@ -40,7 +41,7 @@ object Aoc8a : Aoc {
         return "$visibleTreeCount"
     }
 
-    private fun isObscured(board: BoardOfInts, treeIndices: Pair<Int, Int>, direction: Direction): Boolean {
+    private fun isObscured(board: Grid<Int>, treeIndices: Position, direction: Direction): Boolean {
         val (x, y) = treeIndices
         val tree = board[x][y]
 
