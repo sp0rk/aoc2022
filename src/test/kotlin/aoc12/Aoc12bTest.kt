@@ -2,7 +2,7 @@ package aoc12
 
 import core.AocTest
 
-class Aoc12aTest : AocTest(
+class Aoc12bTest : AocTest(
     testInput =
     """
         Sabqponm
@@ -11,6 +11,6 @@ class Aoc12aTest : AocTest(
         acctuvwj
         abdefghi
     """.trimIndent(),
-    expectedOutput = "31",
-    sut = Aoc12a
+    expectedOutput = "29",
+    sut = Aoc12b
 )
