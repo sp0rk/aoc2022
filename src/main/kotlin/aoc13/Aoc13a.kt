@@ -12,9 +12,15 @@ object Aoc13a : Aoc {
     override fun calculateAnswer(input: Input): String {
         val pairs = parsePairs(input.paragraphs)
 
+        val indicesOfCorrectPairs = pairs.mapIndexed { index, (left, right) ->
+            if (left < right) {
+                index+1
+            } else {
+                0
+            }
+        }.sum()
 
-
-        return "not implemented"
+        return "$indicesOfCorrectPairs"
     }
 
     private fun parsePairs(pairs: List<Input>) =

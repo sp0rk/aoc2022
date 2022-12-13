@@ -2,7 +2,7 @@ package aoc13.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import java.lang.IllegalStateException
+import kotlinx.serialization.Transient
 
 @Serializable
 data class ListOrInt(
@@ -11,7 +11,8 @@ data class ListOrInt(
     @SerialName("l")
     val l: List<ListOrInt>? = null,
 ) {
-    val asElement : Element = if (n != null) {
+    @Transient
+    val asElement: Element = if (n != null) {
         Element.Number(n)
     } else if (l != null) {
         Element.NestedList(l.map { it.asElement })
