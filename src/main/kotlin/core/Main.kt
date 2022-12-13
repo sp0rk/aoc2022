@@ -9,6 +9,7 @@ import aoc11.Aoc11b
 import aoc12.Aoc12a
 import aoc12.Aoc12b
 import aoc13.Aoc13a
+import aoc13.Aoc13b
 import aoc2.Aoc2a
 import aoc2.Aoc2b
 import aoc3.Aoc3a
@@ -52,4 +53,5 @@ fun main() {
     Aoc12a()
     Aoc12b()
     Aoc13a()
+    Aoc13b()
 }

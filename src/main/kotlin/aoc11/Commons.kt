@@ -2,11 +2,12 @@ package aoc11
 
 import aoc11.model.Monkey
 import aoc11.model.Operation
+import commons.product
 import core.Input
 
 object Commons {
     fun playRound(monkeys: List<Monkey>, reduceItemOnInspection: Boolean = true) {
-        val commonDivider = monkeys.fold(1) { acc, monkey -> acc * monkey.divider }
+        val commonDivider = monkeys.product(Monkey::divider)
         monkeys.forEach { monkey ->
             val targets = mutableListOf<Int>()
             // play a turn
