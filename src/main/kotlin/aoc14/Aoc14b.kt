@@ -1,16 +1,37 @@
-package aoc14.model
+package aoc14
 
+import aoc14.model.Commons
+import aoc14.model.Tile
 import commons.*
+import core.Aoc
+import core.Input
 
-object Commons {
+object Aoc14b : Aoc {
+    override val inputPath = "/inputs/Aoc14.txt"
 
-    fun Grid<Tile>.asString(): String = buildString {
-        this@asString.forEach { row ->
-            row.forEach { tile ->
-                append(tile.asString)
-            }
-            appendLine()
-        }
+    override fun calculateAnswer(input: Input): String {
+        val cave = MapGrid(parseCave(input.lineStrings))
+        val source = Position(500, 0)
+
+        var currentSandPosition: Position = source
+        var sandSpawned = 0
+
+        do {
+            // spawn sand
+            var previousSandPosition: Position?
+            currentSandPosition = source
+            do {
+                previousSandPosition = currentSandPosition
+                currentSandPosition = cave.nextSandPosition(currentSandPosition)!!
+            } while (currentSandPosition != previousSandPosition)
+
+            cave[currentSandPosition] = Tile.SAND
+            sandSpawned++
+        } while (currentSandPosition != source)
+
+        printCave(cave)
+
+        return "$sandSpawned"
     }
 
     // null if out of bounds, unchanged if came to stop
@@ -28,15 +49,15 @@ object Commons {
         }
 
         downFrom(currentSandPosition)?.let(::get) == null -> {
-            null
+            downFrom(currentSandPosition)
         }
 
         downFrom(currentSandPosition)?.let(::leftFrom)?.let(::get) == null -> {
-            null
+            leftFrom(downFrom(currentSandPosition)!!)
         }
 
         downFrom(currentSandPosition)?.let(::rightFrom)?.let(::get) == null -> {
-            null
+            rightFrom(downFrom(currentSandPosition)!!)
         }
 
         else -> {
@@ -44,11 +65,11 @@ object Commons {
         }
     }
 
-    fun parseCave(lines: List<String>): HashMap<Position, Tile> {
+    fun parseCave(lines: List<String>): MapGrid<Tile> {
         val cave = hashMapOf(Position(500, 0) to Tile.SOURCE)
 
         lines.forEach { line ->
-            val wall = parseWall(line.split(" -> "))
+            val wall = Commons.parseWall(line.split(" -> "))
 
             // fill walls
             wall.forEach { (start, end) ->
@@ -75,37 +96,24 @@ object Commons {
             }
         }
 
-        return cave
+        val maxY = cave.keys.maxBy(Position::y).y
+        val caveGrid = MapGrid(cave)
+        caveGrid.addFloorBelowMaxY(maxY, Tile.WALL)
+
+        return caveGrid
     }
 
-    fun caveToGrid(cave : HashMap<Position, Tile>): Grid<Tile> {
+    fun printCave(cave: MapGrid<Tile>) {
         val minY = cave.keys.minBy(Position::y).y
         val maxY = cave.keys.maxBy(Position::y).y
         val minX = cave.keys.minBy(Position::x).x
         val maxX = cave.keys.maxBy(Position::x).x
 
-        return Grid(
-            buildList {
-                for (y in minY..maxY) {
-                    add(
-                        buildList {
-                            for (x in minX..maxX) {
-                                add(cave.getOrDefault(x to y, Tile.AIR))
-                            }
-                        }.toMutableList()
-                    )
-                }
-            }.toMutableList()
-        )
-    }
-
-    // [(498,4), (498,6), (496,6)] -> [(498,4) to (498,6), (498,6) to (496,6)]
-    fun parseWall(wall: List<String>) = List(wall.size) { index ->
-        if (index < wall.lastIndex) {
-            positionFromString(wall[index]) to positionFromString(wall[index + 1])
-        } else {
-            null
+        for (y in minY .. maxY) {
+            for (x in minX .. maxX) {
+                print(cave[x to y]?.asString ?: ".")
+            }
+            println()
         }
-    }.filterNotNull()
-
+    }
 }

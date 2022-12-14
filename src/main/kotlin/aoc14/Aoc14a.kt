@@ -1,6 +1,7 @@
 package aoc14
 
 import aoc14.model.Commons.asString
+import aoc14.model.Commons.caveToGrid
 import aoc14.model.Commons.nextSandPosition
 import aoc14.model.Commons.parseCave
 import aoc14.model.Tile
@@ -12,7 +13,7 @@ object Aoc14a : Aoc {
     override val inputPath = "/inputs/Aoc14.txt"
 
     override fun calculateAnswer(input: Input): String {
-        val cave = parseCave(input.lineStrings)
+        val cave = caveToGrid(parseCave(input.lineStrings))
         val source: Position = cave.findElement(Tile.SOURCE)
 
         var currentSandPosition: Position? = source
@@ -33,6 +34,7 @@ object Aoc14a : Aoc {
             }
         }
 
+        print(cave.asString())
 
         return "$sandSpawned"
     }

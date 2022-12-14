@@ -1,6 +1,6 @@
 package commons
 
-class Grid<T>(initial: MutableList<MutableList<T>>) : MutableList<MutableList<T>> by initial {
+class Grid<T>(initial: MutableList<MutableList<T>>) : MutableList<MutableList<T>> by initial, Positional<T> {
     val positions = buildSet {
         this@Grid.forEachIndexed { y, _ ->
             this@Grid[y].forEachIndexed { x, _ ->
@@ -9,7 +9,7 @@ class Grid<T>(initial: MutableList<MutableList<T>>) : MutableList<MutableList<T>
         }
     }
 
-    operator fun get(position: Position) = this[position.y][position.x]
+    override operator fun get(position: Position) = this[position.y][position.x]
     operator fun set(position: Position, value: T) {
         this[position.y][position.x] = value
     }
@@ -31,25 +31,25 @@ class Grid<T>(initial: MutableList<MutableList<T>>) : MutableList<MutableList<T>
         rightFrom(element)?.takeIf { neighbour -> predicate(this[element], this[neighbour]) },
     )
 
-    fun upFrom(position: Position) = if (position.y == 0) {
+    override fun upFrom(position: Position) = if (position.y == 0) {
         null
     } else {
         position + (0 to -1)
     }
 
-    fun downFrom(position: Position) = if (position.y == lastIndex) {
+    override fun downFrom(position: Position) = if (position.y == lastIndex) {
         null
     } else {
         position + (0 to 1)
     }
 
-    fun rightFrom(position: Position) = if (position.x == this[position.y].lastIndex) {
+    override fun rightFrom(position: Position) = if (position.x == this[position.y].lastIndex) {
         null
     } else {
         position + (1 to 0)
     }
 
-    fun leftFrom(position: Position) = if (position.x == 0) {
+    override fun leftFrom(position: Position) = if (position.x == 0) {
         null
     } else {
         position + (-1 to 0)
