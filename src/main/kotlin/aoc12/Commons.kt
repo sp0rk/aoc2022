@@ -9,8 +9,8 @@ object Commons {
         rows.map { row ->
             row.toList().map { height ->
                 Node(height = height, tentativeDistance = Int.MAX_VALUE)
-            }
-        }
+            }.toMutableList()
+        }.toMutableList()
     )
 
     fun findShortestPath(

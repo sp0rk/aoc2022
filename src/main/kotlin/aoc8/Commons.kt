@@ -7,8 +7,8 @@ import commons.Grid
  */
 fun parseTreeBoard(lineStrings: List<String>): Grid<Int> = Grid(
     lineStrings.map { row ->
-        row.map(Char::digitToInt)
-    }
+        row.map(Char::digitToInt).toMutableList()
+    }.toMutableList()
 )
 
 

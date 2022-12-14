@@ -2,9 +2,6 @@ package aoc12
 
 import aoc12.Commons.findShortestPath
 import aoc12.Commons.parseHeightMap
-import aoc12.model.Node
-import commons.Grid
-import commons.Position
 import core.Aoc
 import core.Input
 

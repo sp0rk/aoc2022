@@ -1,22 +1,25 @@
 package commons
 
-class Grid<T>(initial: List<List<T>>) : List<List<T>> by initial {
+class Grid<T>(initial: MutableList<MutableList<T>>) : MutableList<MutableList<T>> by initial {
     val positions = buildSet {
-            this@Grid.forEachIndexed { y, _ ->
-                this@Grid[y].forEachIndexed { x, _ ->
-                    add(Position(x, y))
-                }
+        this@Grid.forEachIndexed { y, _ ->
+            this@Grid[y].forEachIndexed { x, _ ->
+                add(Position(x, y))
             }
         }
+    }
 
     operator fun get(position: Position) = this[position.y][position.x]
+    operator fun set(position: Position, value: T) {
+        this[position.y][position.x] = value
+    }
 
-    fun findElement(element: T) =
+    fun findElement(element: T): Position =
         indexOfFirst { it.contains(element) }.let { y ->
             this[y].indexOf(element) to y
         }
 
-    fun findElement(predicate: (T) -> Boolean) =
+    fun findElement(predicate: (T) -> Boolean): Position =
         indexOfFirst { it.any(predicate) }.let { y ->
             this[y].indexOfFirst(predicate) to y
         }
